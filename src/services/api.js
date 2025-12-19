@@ -6,14 +6,21 @@ const apiRequest = async (endpoint, options = {}) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
     },
+    mode: 'cors',
+    credentials: 'omit',
     ...options,
   };
 
   try {
+    console.log('Making request to:', url);
     const response = await fetch(url, config);
+    console.log('Response status:', response.status);
+    
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
     }
     return await response.json();
   } catch (error) {
