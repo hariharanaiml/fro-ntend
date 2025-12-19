@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://backend-1-6vs2.onrender.com/api';
 
 // Generic API functions
 const apiRequest = async (endpoint, options = {}) => {
